@@ -1,0 +1,36 @@
+# Modern Web Portfolio & Gamified Platform - System Rules (.cursorrules)
+
+# Core Stack (HARD RULES)
+- Framework: React 19 with Vite (No Next.js allowed under any circumstances)
+- Language: Modern JavaScript (ES6+) with JSX (.js / .jsx). NO TypeScript allowed.
+- Styling: Tailwind CSS (v3/v4), CSS Variables, Glassmorphism, Dynamic Dark/Light Theme
+- Database & Auth: Supabase (PostgreSQL, Row Level Security, Auth Policies, Realtime)
+- State Management: React Context API / Zustand
+- Icons & UI Components: Lucide React, Framer Motion
+
+# Language & Localization Rules (HARD RULES)
+1. User-Facing UI Text: MUST be 100% Vietnamese (Tiếng Việt) across all components, pages, toasts, error messages, and modals.
+2. Codebase Conventions: Variables, functions, components, hooks, file names, comments, and database schema MUST be written in Clean English.
+
+# Architecture & Development Rules
+1. Clean JavaScript (ES6+): Use clean modular JS with JSDoc if necessary. Keep code readable, concise, and DRY.
+2. File Extensions: Use `.jsx` for React components and `.js` for non-UI utilities/services/hooks.
+3. Modular Structure:
+   - `src/components/ui/` -> Atomic/Reusable UI elements
+   - `src/features/portfolio/` -> Portfolio sections (Introduce, About, Skills, Projects, Contact, Chatbot)
+   - `src/features/game/` -> Game sub-system (Questions, Levels, Point Store, Vouchers)
+   - `src/hooks/` -> Custom React hooks (.js)
+   - `src/lib/supabase.js` -> Supabase Client initialization
+   - `src/services/` -> API and database calls (.js)
+4. RBAC & Security:
+   - Never bypass Row Level Security (RLS) in Supabase.
+   - Distinct roles: `recruiter` (instant full portfolio view), `friend` (gamified Q&A locked content access), `admin`.
+   - Protect sensitive trivia answers server-side using Supabase Database Functions (RPC).
+5. UI/UX Standards:
+   - Executive & Sleek Tech Portfolio aesthetic as default.
+   - Gamified Arcade theme for `/game` playground mode.
+   - Fully responsive, accessible, mobile-first design.
+
+# Coding & Refactoring Guidelines
+- Keep component files under 150 lines. Extract sub-components if needed.
+- Handle all async loading and error states explicitly with skeleton fallbacks and toast notifications.
