@@ -1,111 +1,145 @@
-:root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
-  --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+@import "tailwindcss";
 
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
+/* ==========================================================================
+   Design Tokens - Tailwind CSS v4 Theme
+   ========================================================================== */
+@theme {
+  /* Executive Portfolio Palette */
+  --color-executive-bg: #0b0f19;
+  --color-executive-surface: #111827;
+  --color-executive-card: rgba(17, 24, 39, 0.75);
+  --color-executive-border: rgba(255, 255, 255, 0.08);
 
-  font: 18px/145% var(--sans);
-  letter-spacing: 0.18px;
-  color-scheme: light dark;
-  color: var(--text);
-  background: var(--bg);
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  /* Brand Accents */
+  --color-brand-primary: #6366f1;
+  --color-brand-primary-hover: #4f46e5;
+  --color-brand-secondary: #8b5cf6;
+  --color-brand-cyan: #06b6d4;
 
-  @media (max-width: 1024px) {
-    font-size: 16px;
-  }
+  /* Arcade Gamified Palette */
+  --color-arcade-bg: #0a0518;
+  --color-arcade-surface: #170d33;
+  --color-arcade-neon: #06b6d4;
+  --color-arcade-gold: #f59e0b;
+  --color-arcade-purple: #a855f7;
+  --color-arcade-pink: #ec4899;
+
+  /* Typography */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-heading: 'Outfit', 'Space Grotesk', -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', ui-monospace, monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-  }
+/* ==========================================================================
+   CSS Variables for Dynamic Theming (Executive vs Arcade)
+   ========================================================================== */
+:root {
+  --app-bg: #0b0f19;
+  --app-surface: #111827;
+  --app-card: rgba(17, 24, 39, 0.72);
+  --app-border: rgba(255, 255, 255, 0.08);
+  --app-text: #f3f4f6;
+  --app-text-muted: #9ca3af;
+  --app-accent: #6366f1;
+  --app-accent-glow: rgba(99, 102, 241, 0.25);
+  --app-ring: rgba(99, 102, 241, 0.4);
+}
 
-  #social .button-icon {
-    filter: invert(1) brightness(2);
-  }
+[data-theme="arcade"] {
+  --app-bg: #0a0518;
+  --app-surface: #170d33;
+  --app-card: rgba(23, 13, 51, 0.8);
+  --app-border: rgba(168, 85, 247, 0.25);
+  --app-text: #f8fafc;
+  --app-text-muted: #c084fc;
+  --app-accent: #06b6d4;
+  --app-accent-glow: rgba(6, 182, 212, 0.35);
+  --app-ring: rgba(6, 182, 212, 0.5);
+}
+
+/* ==========================================================================
+   Global Reset & Base Typography
+   ========================================================================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  color-scheme: dark;
 }
 
 body {
   margin: 0;
+  min-height: 100vh;
+  background-color: var(--app-bg);
+  color: var(--app-text);
+  font-family: var(--font-sans);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-#root {
-  width: 1126px;
-  max-width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  border-inline: 1px solid var(--border);
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--app-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.28);
 }
 
-h1,
-h2 {
-  font-family: var(--heading);
-  font-weight: 500;
-  color: var(--text-h);
+/* Selection Highlight */
+::selection {
+  background: var(--app-accent);
+  color: #ffffff;
 }
 
-h1 {
-  font-size: 56px;
-  letter-spacing: -1.68px;
-  margin: 32px 0;
-  @media (max-width: 1024px) {
-    font-size: 36px;
-    margin: 20px 0;
-  }
-}
-h2 {
-  font-size: 24px;
-  line-height: 118%;
-  letter-spacing: -0.24px;
-  margin: 0 0 8px;
-  @media (max-width: 1024px) {
-    font-size: 20px;
-  }
-}
-p {
-  margin: 0;
+/* ==========================================================================
+   Glassmorphism & Interactive Utilities
+   ========================================================================== */
+.glass-panel {
+  background: var(--app-card);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--app-border);
 }
 
-code,
-.counter {
-  font-family: var(--mono);
-  display: inline-flex;
-  border-radius: 4px;
-  color: var(--text-h);
+.glass-card {
+  background: var(--app-card);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--app-border);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-code {
-  font-size: 15px;
-  line-height: 135%;
-  padding: 4px 8px;
-  background: var(--code-bg);
+.glass-card:hover {
+  border-color: var(--app-accent-glow);
+  box-shadow: 0 12px 40px 0 var(--app-accent-glow);
+  transform: translateY(-2px);
+}
+
+/* Neon Glows */
+.neon-glow-brand {
+  box-shadow: 0 0 20px -3px rgba(99, 102, 241, 0.45);
+}
+
+.neon-glow-arcade {
+  box-shadow: 0 0 25px -3px rgba(6, 182, 212, 0.55);
+}
+
+.neon-border-arcade {
+  border: 1px solid rgba(6, 182, 212, 0.6);
+  box-shadow: inset 0 0 15px rgba(6, 182, 212, 0.2), 0 0 20px rgba(6, 182, 212, 0.35);
 }

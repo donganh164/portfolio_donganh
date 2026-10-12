@@ -19,7 +19,10 @@ description: Domain logic and engineering guidelines for Dong Anh's Dual-Mode We
 ## 2. Domain Concept & System Overview
 This system is a **Dual-Mode Web Platform** created for **Đông Anh**:
 1. **Professional Web Portfolio (Primary Priority)**: High-impact showcase of engineering skills, projects, case studies, AI chatbot, and interactive contact for recruiters and tech executives.
+   - **Aesthetic**: Minimalist Tech Editorial / Modern Gazette. Clean cool palette (Deep Obsidian / Slate / Cool Monochrome), refined typography, subtle 1px borders, high-impact interactive micro-motions and physics.
 2. **Gamified Arcade Module (Secondary / Social Layer)**: Interactive Q&A quest system for friends and relatives with point accumulation (EXP/Coins), level progression, unlockable personal trivia/easter eggs, and redeemable vouchers.
+   - **Aesthetic**: Refined Minimalist Arcade. Tasteful cool electric accents, higher motion intensity, interactive quest map, engaging without being oversaturated or carnival-like.
+3. **Theming Architecture**: Single primary dark-cool foundation (no distracting light/dark toggle). Decoupled CSS variable tokens so components remain flexible and independent of hardcoded colors.
 
 ---
 
@@ -68,3 +71,15 @@ This system is a **Dual-Mode Web Platform** created for **Đông Anh**:
 1. `profiles`: Read allowed for authenticated user's own profile; Read role metadata for system routes.
 2. `questions`: Correct answers column hidden from public queries via Supabase Database Functions (RPC) to prevent client-side inspection/cheating.
 3. `vouchers`: Only redeemable via atomic PostgreSQL transaction functions (`redeem_voucher_rpc`).
+
+---
+
+## 6. Pair-Programming & Agent Operational Workflow (STRICT)
+- **Mindset**: Agent là người đồng hành (Co-pilot / DevOps Mentor), tuyệt đối KHÔNG thực thi âm thầm (No blackbox / silent execution).
+- **Quy trình bắt buộc trước khi code hoặc chạy terminal**:
+  1. **Mở khối `<brainstorm>`**:
+     - **Bối cảnh & Phân tích**: Tại sao cần làm mục này, tác động tới kiến trúc hệ thống ra sao.
+     - **Kế hoạch chi tiết & Gợi ý code**: Trình bày từng file dự kiến tạo/sửa, giải thích chi tiết mục đích từng hàm/biến.
+     - **Kiến thức cốt lõi cần học**: Chỉ rõ các kiến thức công nghệ mà người dùng cần hiểu để sau này tự tin vận hành, bảo trì và phát triển thêm tính năng mà không bị phụ thuộc.
+  2. **Thống nhất phương án**: Trao đổi, trả lời thắc mắc của người dùng và chờ người dùng xác nhận trước khi thực hiện bất kỳ thay đổi nào lên mã nguồn.
+
