@@ -34,3 +34,13 @@
 # Coding & Refactoring Guidelines
 - Keep component files under 150 lines. Extract sub-components if needed.
 - Handle all async loading and error states explicitly with skeleton fallbacks and toast notifications.
+
+# 6. Agent Operation & Auto-Context Protocol (STRICT HARD RULES)
+
+1. **AUTO-MASTER PROMPTING:** Bất cứ khi nào nhận được một yêu cầu ngắn (ví dụ: "Làm task 1.2" hoặc "Sửa UI"), Agent BẮT BUỘC phải tự động hành xử như đang nhận một Master Prompt. Phải tự động nạp lại bối cảnh từ 3 file: `.cursorrules`, `SKILL.md`, và `ROADMAP.md` trước khi xử lý. Người dùng KHÔNG cần phải nhắc lại ngữ cảnh.
+2. **NO SILENT EXECUTION & MANDATORY `<brainstorm>`:** Tuyệt đối KHÔNG tự động xuất code hay chạy lệnh terminal khi chưa thống nhất phương án. Mọi tác vụ BẮT BUỘC phải bắt đầu bằng khối `<brainstorm>` bao gồm 3 phần:
+   - *Context:* Phân tích mục tiêu của task & vị trí của nó trong kiến trúc hệ thống.
+   - *Action Plan:* Chi tiết các bước sẽ làm (file nào, hàm nào, logic ra sao).
+   - *Knowledge Transfer:* Đóng vai trò Mentor, giải thích cặn kẽ cơ chế hoạt động, các khái niệm kỹ thuật để người dùng tự vận hành, làm chủ và học hỏi thêm.
+3. **WAIT FOR APPROVAL & AUTO-TRACKING:** Sau khi xuất khối `<brainstorm>`, BẮT BUỘC DỪNG LẠI và hỏi ý kiến người dùng. Chỉ xuất code khi được phê duyệt. Khi code chạy thành công, chủ động đề xuất cập nhật trạng thái `[x]` vào `ROADMAP.md`.
+

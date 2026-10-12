@@ -1,121 +1,89 @@
 import { useState } from 'react'
-import heroImg from './assets/hero.png'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import './App.css'
+import { Terminal, ShieldCheck, Gamepad2, Sparkles, Layers } from 'lucide-react'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [activeMode, setActiveMode] = useState('portfolio')
+
+  const toggleMode = () => {
+    const nextMode = activeMode === 'portfolio' ? 'arcade' : 'portfolio'
+    setActiveMode(nextMode)
+    if (nextMode === 'arcade') {
+      document.documentElement.setAttribute('data-theme', 'arcade')
+    } else {
+      document.documentElement.removeAttribute('data-theme')
+    }
+  }
 
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
+    <main className="min-h-screen flex flex-col items-center justify-center p-6 text-center select-none">
+      {/* Background ambient lighting */}
+      <div className="absolute inset-0 -z-10 overflow-hidden pointer-events-none">
+        <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-indigo-500/10 rounded-full blur-3xl" />
+        <div className="absolute -bottom-40 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-purple-500/10 rounded-full blur-3xl" />
+      </div>
+
+      <div className="max-w-2xl w-full glass-card rounded-2xl p-8 sm:p-10 border border-white/10 shadow-2xl space-y-6">
+        {/* Status Badge */}
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-medium bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
+          <Sparkles className="w-3.5 h-3.5 text-indigo-400 animate-pulse" />
+          <span>Hệ Thống Sẵn Sàng • Giai Đoạn 1.4 Hoàn Tất</span>
         </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
+
+        {/* Title */}
+        <div className="space-y-2">
+          <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-white flex items-center justify-center gap-3">
+            <Terminal className="w-8 h-8 text-indigo-400" />
+            Đông Anh Portfolio & Arcade
+          </h1>
+          <p className="text-gray-400 text-sm sm:text-base leading-relaxed">
+            Kiến trúc Dual-Mode đã được thiết lập modular hóa: Tách biệt hoàn toàn tầng UI, Portfolio, Game Arcade, Services và Custom Hooks.
           </p>
         </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
 
-      <div className="ticks"></div>
+        {/* System Diagnostics Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-left">
+          <div className="p-3.5 rounded-xl bg-white/[0.03] border border-white/5 space-y-1">
+            <div className="flex items-center gap-2 text-xs font-semibold text-gray-300">
+              <ShieldCheck className="w-4 h-4 text-emerald-400" />
+              Bảo Mật
+            </div>
+            <p className="text-[11px] text-gray-500 leading-tight">RLS & Database Functions RPC chuẩn bị tích hợp.</p>
+          </div>
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
+          <div className="p-3.5 rounded-xl bg-white/[0.03] border border-white/5 space-y-1">
+            <div className="flex items-center gap-2 text-xs font-semibold text-gray-300">
+              <Layers className="w-4 h-4 text-indigo-400" />
+              Cấu Trúc
+            </div>
+            <p className="text-[11px] text-gray-500 leading-tight">Feature-Driven: `components/`, `features/`, `services/`.</p>
+          </div>
+
+          <div className="p-3.5 rounded-xl bg-white/[0.03] border border-white/5 space-y-1">
+            <div className="flex items-center gap-2 text-xs font-semibold text-gray-300">
+              <Gamepad2 className="w-4 h-4 text-cyan-400" />
+              Chế Độ
+            </div>
+            <p className="text-[11px] text-gray-500 leading-tight">Hiện tại: {activeMode === 'portfolio' ? 'Executive Tech' : 'Neon Arcade'}</p>
+          </div>
         </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
+        {/* Action Button: Test Dynamic Theme Toggle */}
+        <div className="pt-2">
+          <button
+            type="button"
+            onClick={toggleMode}
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-medium text-sm text-white bg-indigo-600 hover:bg-indigo-500 active:scale-[0.98] transition-all duration-200 shadow-lg shadow-indigo-600/25 cursor-pointer"
+          >
+            <Gamepad2 className="w-4 h-4" />
+            Chuyển Thử Chế Độ ({activeMode === 'portfolio' ? 'Sang Arcade Theme' : 'Về Executive Theme'})
+          </button>
+        </div>
+      </div>
+
+      <footer className="mt-8 text-xs text-gray-500">
+        © 2026 Đông Anh • Thiết kế & Kiến trúc React 19 + Tailwind CSS v4
+      </footer>
+    </main>
   )
 }
 
