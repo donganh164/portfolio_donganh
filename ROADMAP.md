@@ -27,38 +27,38 @@
 
 ## Giai đoạn 2: UI Kit & Design System Nền Tảng (Foundation Components)
 *Định hướng cá nhân hóa: Portfolio phong cách Báo chí Công nghệ Tối giản (Minimalist Tech Gazette - Tông đen trắng / xanh đậm lạnh), tương phản tinh tế với Game mode (bắt mắt, nhiều chuyển động hơn, không lòe loẹt). Tập trung xây dựng bộ khung Component linh hoạt, KHOAN khóa cứng mã màu cuối cùng.*
-- [ ] 2.1 Cấu hình bộ khung Biến động (Design Tokens & CSS Variables Skeleton).
-  - [ ] 2.1.1 Thiết lập hệ thống biến trừu tượng (`--bg-primary`, `--accent-cool`, `--text-primary`, `--border-subtle`).
-  - [ ] 2.1.2 Chuẩn bị bộ token tương phản cho Chế độ Game (Gamified mode tokens: accent lạnh bắt mắt, nhiều chuyển động visual).
-- [ ] 2.2 Tích hợp Typography tiếng Việt (Google Fonts).
-  - [ ] 2.2.1 Font chữ hiện đại, sắc sảo cho văn bản & nội dung kỹ thuật (`Inter` / `Be Vietnam Pro`).
-  - [ ] 2.2.2 Font tiêu đề mang hơi hướng Editorial / Display cá tính (`Space Grotesk` / `Outfit`).
-- [ ] 2.3 Xây dựng Typography & Layout Wrapper gốc.
-  - [ ] 2.3.1 Xây dựng `Navbar` cố định kèm nút chuyển đổi chế độ (`ModeSwitcher`: Portfolio <-> Game Playground).
-  - [ ] 2.3.2 Xây dựng `Footer` và container layout chuẩn responsive.
-- [ ] 2.4 Xây dựng bộ Atomic & Interactive Components linh hoạt (`src/components/ui/`).
-  - [ ] 2.4.1 `Button.jsx` (hỗ trợ hiệu ứng hover vi mô, magnetic motion, glass, outline, icon).
-  - [ ] 2.4.2 `Card.jsx` (hỗ trợ viền tinh tế 1px, phản quang vi mô, tilt tương tác).
-  - [ ] 2.4.3 `Badge.jsx` (tag công nghệ đơn sắc thanh lịch, trạng thái cấp bậc).
-  - [ ] 2.4.4 `Toast.jsx` & Toast Notification Manager (thông báo kết quả gửi liên hệ, auth).
-  - [ ] 2.4.5 `SkeletonLoader.jsx` (placeholder chuyển động shimmer lúc tải dữ liệu).
-  - [ ] 2.4.6 `Modal.jsx` (hộp thoại xem chi tiết dự án, đăng nhập Gmail, thử thách game).
+- [x] 2.1 Cấu hình bộ khung Biến động (Design Tokens & CSS Variables Skeleton).
+  - [x] 2.1.1 Thiết lập hệ thống biến trừu tượng (`--bg-primary`, `--accent-cool`, `--text-primary`, `--border-subtle`).
+  - [x] 2.1.2 Chuẩn bị bộ token tương phản cho Chế độ Game (Gamified mode tokens: accent lạnh bắt mắt, nhiều chuyển động visual).
+- [x] 2.2 Tích hợp Typography tiếng Việt (Google Fonts).
+  - [x] 2.2.1 Font chữ hiện đại, sắc sảo cho văn bản & nội dung kỹ thuật (`Inter` / `Be Vietnam Pro`).
+  - [x] 2.2.2 Font tiêu đề mang hơi hướng Editorial / Display cá tính (`Space Grotesk` / `Outfit`).
+- [x] 2.3 Xây dựng Typography & Layout Wrapper gốc.
+  - [x] 2.3.1 Xây dựng `Navbar` cố định kèm nút chuyển đổi chế độ (`ModeSwitcher`: Portfolio <-> Game Playground).
+  - [x] 2.3.2 Xây dựng `Footer` và container layout chuẩn responsive.
+- [x] 2.4 Xây dựng bộ Atomic & Interactive Components linh hoạt (`src/components/ui/`).
+  - [x] 2.4.1 `Button.jsx` (hỗ trợ hiệu ứng hover vi mô, magnetic motion, glass, outline, icon).
+  - [x] 2.4.2 `Card.jsx` (hỗ trợ viền tinh tế 1px, phản quang vi mô, tilt tương tác).
+  - [x] 2.4.3 `Badge.jsx` (tag công nghệ đơn sắc thanh lịch, trạng thái cấp bậc).
+  - [x] 2.4.4 `Toast.jsx` & Toast Notification Manager (thông báo kết quả gửi liên hệ, auth).
+  - [x] 2.4.5 `SkeletonLoader.jsx` (placeholder chuyển động shimmer lúc tải dữ liệu).
+  - [x] 2.4.6 `Modal.jsx` (hộp thoại xem chi tiết dự án, đăng nhập Gmail, thử thách game).
 
 ---
 
 ## Giai đoạn 2.5: Thiết kế Database SQL, RLS & Trigger Tự Động Lưu User
 *Mục tiêu: Cung cấp 1 file script `supabase/schema.sql` duy nhất để chạy trên Supabase SQL Editor là có ngay toàn bộ Database hoàn chỉnh.*
-- [ ] 2.5.1 Thiết kế Schema bảng dữ liệu cốt lõi (SQL DDL).
-  - [ ] 2.5.1.1 Bảng `profiles`: ID (FK auth.users), email, full_name, avatar_url, role (`recruiter`, `friend`, `admin`), created_at.
-  - [ ] 2.5.1.2 Bảng `projects`: Tiêu đề, mô tả, tags, demo_link, github_link, metrics, architecture_notes, order_index.
-  - [ ] 2.5.1.3 Bảng `contacts`: Tên, email, tin nhắn, is_recruiter, created_at.
-  - [ ] 2.5.1.4 Bảng Game: `game_profiles`, `questions`, `vouchers`, `user_vouchers`.
-- [ ] 2.5.2 Viết PostgreSQL Trigger tự động lưu thông tin khi Đăng nhập Gmail (`handle_new_user`).
-  - [ ] 2.5.2.1 Trigger lắng nghe sự kiện `auth.users` -> tự động chèn record vào `public.profiles` với avatar và tên từ Google.
-- [ ] 2.5.3 Thiết lập Row Level Security (RLS) & Quyền truy cập an toàn.
-  - [ ] 2.5.3.1 Công khai đọc `projects`; Cho phép người dùng gửi tin nhắn vào `contacts`.
-  - [ ] 2.5.3.2 Bảo vệ dữ liệu cá nhân trong `profiles` và bảo vệ đáp án câu hỏi game.
-- [ ] 2.5.4 Tạo file Seed Data mẫu (`supabase/seed.sql`) với dữ liệu dự án mẫu của Đông Anh.
+- [x] 2.5.1 Thiết kế Schema bảng dữ liệu cốt lõi (SQL DDL).
+  - [x] 2.5.1.1 Bảng `profiles`: ID (FK auth.users), email, full_name, avatar_url, role (`admin`, `interviewer`, `user`, `guest`), created_at.
+  - [x] 2.5.1.2 Bảng `projects`: Tiêu đề, mô tả, tags, demo_link, github_link, metrics, order_index.
+  - [x] 2.5.1.3 Bảng `contacts`: Tên, email, tin nhắn, category, created_at.
+  - [x] 2.5.1.4 Bảng Game: `game_profiles`, `questions` (2 giai đoạn & bản đồ), `vouchers`, `user_vouchers`.
+- [x] 2.5.2 Viết PostgreSQL Trigger tự động lưu thông tin khi Đăng nhập Gmail (`handle_new_user`).
+  - [x] 2.5.2.1 Trigger lắng nghe sự kiện `auth.users` -> tự động chèn record vào `public.profiles` và khởi tạo `public.game_profiles`.
+- [x] 2.5.3 Thiết lập Row Level Security (RLS) & Quyền truy cập an toàn.
+  - [x] 2.5.3.1 Công khai đọc `projects`; Cho phép mọi người gửi liên hệ vào `contacts`.
+  - [x] 2.5.3.2 Bảo vệ dữ liệu cá nhân trong `profiles`, chống xem trộm đáp án `questions` bằng RPC Functions.
+- [x] 2.5.4 Tạo file SQL Database hoàn chỉnh (`supabase/schema.sql`) tích hợp sẵn Seed Data khởi tạo mẫu.
 
 ---
 
